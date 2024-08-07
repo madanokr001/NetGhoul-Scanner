@@ -8,7 +8,7 @@
 
 ls
 
-python python.py
+python NetGhoul.py
 
 # 포트 스캐너 란?
 
