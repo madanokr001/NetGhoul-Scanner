@@ -21,7 +21,7 @@ def portscan_logo():
 def scan_port(target, port):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        socket.setdefaulttimeout(0.1)  # 타임아웃 시간을 줄임
+        socket.setdefaulttimeout(0.5) 
         result = s.connect_ex((target, port))
         if result == 0:
             return port
@@ -40,7 +40,7 @@ def main():
     open_ports = []
 
     try:
-        with ThreadPoolExecutor(max_workers=500) as executor:
+        with ThreadPoolExecutor(max_workers=100) as executor:
             results = executor.map(scan_port, [target] * 65535, range(1, 65536))
             for port in results:
                 if port:
@@ -61,7 +61,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
 
